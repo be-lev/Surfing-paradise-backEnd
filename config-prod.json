@@ -1,0 +1,10 @@
+{
+    "isProduction": true,
+    "isDevelopment": false,
+    "database": {
+        "host": "localhost",
+        "user": "root",
+        "password": "",
+        "name": "retirement_heaven"
+    }
+}
