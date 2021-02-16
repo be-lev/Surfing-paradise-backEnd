@@ -3,19 +3,21 @@
 ### This project is part from my full-stack diploma
 <br><br>
 
-# :lock: This secure  backend server i used:
-### Clear server error message from end users
-### Hash user password in the database
+# :lock: This secure  backend server i used: :lock:
+### Clear server error message from end users.
+### crypto user password in the database.
+### prevent unauthorized entering to different sections of the site.
+### admin\user login.
 <br>
 
 
 | NPM package name        | Usage           | 
 | ------------- |:-------------:| 
-| cors     | access API from multiply machines | 
-| express     | manage server      |  
+| cors     | Handle loading of resources from my website | 
+| express     | Manage and develop the server      |  
 | mysql | Create data base      |  
 | uuid | Create unique Ids for users      |  
-| strip-tags | Prevent tags injection in SQL      |  
+| strip-tags | Prevent tags injection into SQL      |  
 | svg-captcha | Prevent login DosS attack       |  
 | express-rate-limit | Prevent server response DosS attack     |  
 | jsonwebtoken | Enable user token login security      |  
