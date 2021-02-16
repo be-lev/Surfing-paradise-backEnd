@@ -15,15 +15,17 @@ class Vacation {
         id: Joi.number().optional(),
         destination: Joi.string().required().min(2).max(100),
         description: Joi.string().required().min(2).max(1000),
-        fromDate: Joi.date().format("YYYY-MM-DD").min(today()).message('"date" cannot be earlier than today').required(),
-        toDate: Joi.date().format("YYYY-MM-DD").max(today()).message('"date" cannot be less than one day').required()
+        //! pay attention to the format of the date and the validation scheme iam suspecting it at QA level
+        fromDate: Joi.date().greater('now').required(),
+        toDate: Joi.date().required()
     });
     static #putValidationSchema = Joi.object({
         id: Joi.number().required().positive().integer(),
         destination: Joi.string().required().min(2).max(100),
         description: Joi.string().required().min(2).max(1000),
-        fromDate: Joi.date().format("YYYY-MM-DD").min(today()).message('"date" cannot be earlier than today').required(),
-        toDate: Joi.date().format("YYYY-MM-DD").max(today()).message('"date" cannot be less than one day').required()
+         //! pay attention to the format of the date and the validation scheme iam suspecting it at QA level
+        fromDate: Joi.date().greater('now').required(),
+        toDate: Joi.date().required()
     });
  
 

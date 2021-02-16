@@ -1,10 +1,8 @@
 {
-    "isProduction": false,
-    "isDevelopment": true,
-    "database": {
+    "mysql": {
         "host": "localhost",
         "user": "root",
         "password": "",
-        "name": "retirement_heaven"
+        "database": "Northwind"
     }
 }

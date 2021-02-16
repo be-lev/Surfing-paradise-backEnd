@@ -23,4 +23,4 @@
 | jsonwebtoken | Enable token based secure login       |  
 | cookie-parser | Enable sending an receiving cookies from the front      |  
 | joi | Data input validation      |  
-| socket.io | Enable listener to the number of connected Clients to the server        |  
+| socket.io | Enable listener for connected Clients to the server        |  

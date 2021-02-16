@@ -1,5 +1,5 @@
 const express = require("express");
-const usersLogic = require("../business-logic/users-logic");
+const usersLogic = require("../business-vacations-logic/users-logic");
 const errorsHelper = require("../helpers/errors-helper");
 const router = express.Router();
 

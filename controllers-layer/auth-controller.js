@@ -1,5 +1,5 @@
 const express = require("express");
-const authLogic = require("../business-logic/auth-logic");
+const authLogic = require("../business-vacations-logic/auth-logic");
 const router = express.Router();
 const errorsHelper = require("../helpers/errors-helper");
 const svgCaptcha = require("svg-captcha");

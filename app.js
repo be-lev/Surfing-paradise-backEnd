@@ -49,5 +49,5 @@ server.use("*", (request, response) => {
 
 const port= process.env.port || 3001
 
-const expressListener = server.listen(port, () => console.log("Listening to" + port +"..."));
+const expressListener = server.listen(port, () => console.log("Listening to " + port + "..."));
 socketHelper.init(expressListener);
