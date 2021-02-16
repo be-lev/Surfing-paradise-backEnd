@@ -3,7 +3,7 @@
 ### This project is part from my full-stack diploma
 <br><br>
 
-# :lock: This secure  backend server i used: :lock:
+# :lock: In this secure backend server i used: :lock:
 ### Clear server error message from end users.
 ### crypto user password in the database.
 ### prevent unauthorized entering to different sections of the site.
@@ -20,6 +20,7 @@
 | strip-tags | Prevent tags injection into SQL      |  
 | svg-captcha | Prevent login DosS attack       |  
 | express-rate-limit | Prevent server response DosS attack     |  
-| jsonwebtoken | Enable user token login security      |  
+| jsonwebtoken | Enable token based secure login       |  
 | cookie-parser | Enable sending an receiving cookies from the front      |  
 | joi | Data input validation      |  
+| socket.io | Enable listener to the number of connected Clients to the server        |  
