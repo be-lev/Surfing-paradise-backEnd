@@ -5,6 +5,7 @@ const expressRateLimit = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
 const cors = require ("cors");
 const sanitize = require("./middleware/sanitize");
+const socketHelper = require("./helpers/socket-helper");
 const server = express(); 
 const path= require("path");
 const authController = require("./controllers-layer/auth-controller");
@@ -39,6 +40,8 @@ server.use("*", (request, response) => {
     response.sendFile(path.join(__dirname + "./frontend/index.html"))
 });
 
+// TODO: understand if i need all this get from front end and how to get them
+// ! this is copy past from security project front end is not a react project
 // server.get("/users/edit/:uuid", (request, response) => response.sendFile(__dirname + "./frontend/edit.html"));
 // server.get("/login", (request, response) => response.sendFile(__dirname + "./frontend/login.html"));
 // server.get("/register", (request, response) => response.sendFile(__dirname + "./frontend/register.html"));
@@ -46,4 +49,5 @@ server.use("*", (request, response) => {
 
 const port= process.env.port || 3001
 
-server.listen(port, () => console.log("Listening to" + port +"..."));
+const expressListener = server.listen(port, () => console.log("Listening to" + port +"..."));
+socketHelper.init(expressListener);

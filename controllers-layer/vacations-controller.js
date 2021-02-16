@@ -5,6 +5,7 @@ const path = require("path")
 const verifyLoggedIn = require("../middleware/verify-logged-in");
 const verifyAdmin = require("../middleware/verify-admin");
 const errorsHelper = require("../helpers/errors-helper");
+const socketHelper = require("../helpers/socket-helper");
 const router = express.Router();
 
 
@@ -45,6 +46,9 @@ router.post("/", verifyAdmin, async (request, response) => {
         }
         const addedVacation = await vacationLogic.addVacationAsync(vacation, request.files ? request.files.image : null);
         response.status(201).json(addedVacation);
+        
+        // Send socket.io added message to front:
+        socketHelper.vacationAdded(addedVacation);
     }
     catch (err) {
         response.status(500).send(errorsHelper.getError(err));
@@ -68,6 +72,8 @@ router.put("/:id", verifyAdmin,async (request, response) => {
             return;
         }
         response.json(updatedVacation);
+        // Send socket.io added message to front:
+        socketHelper.vacationUpdated(updatedVacation);
     }
     catch (err) {
         response.status(500).send(errorsHelper.getError(err));
@@ -81,6 +87,8 @@ router.delete("/:id", verifyAdmin, async (request, response) => {
         const id = +request.params.id;
         await vacationLogic.deleteVacationAsync(id);
         response.sendStatus(204);
+        // Send socket.io added message to front:
+        socketHelper.vacationDeleted(id)
     }
     catch (err) {
         response.status(500).send(errorsHelper.getError(err));
