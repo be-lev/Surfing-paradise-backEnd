@@ -1,7 +1,7 @@
 function getError(err) {
 
     if(config.isProduction) {
-        return "Some error occurred, please try again.";
+        return "We are sorry but something went wrong, please try again.";
     }
 
     return err.message;

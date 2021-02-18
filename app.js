@@ -14,7 +14,7 @@ const vacationsController = require("./controllers-layer/vacations-controller");
 
 
 // Defend against DOS attack:
-server.use("/api/", expressRateLimit({
+server.use("/api/vacations", expressRateLimit({
     windowMs: 1000, // 1 sec window
     max: 2, // limit each IP to 2 requests per windowMs
     message: "Hi m8 how are you? you feeling kinda of strange to me..."
@@ -35,10 +35,10 @@ server.use("/api/users", usersController);
 server.use("/api/vacations", vacationsController);
 
 // react front end 
-server.use("*", (request, response) => {
+// server.use("*", (request, response) => {
     //response.status(404).send("Route not found");
-    response.sendFile(path.join(__dirname + "./frontend/index.html"))
-});
+    // response.sendFile(path.join(__dirname + "./frontend/index.html"))
+// });
 
 // TODO: understand if i need all this get from front end and how to get them
 // ! this is copy past from security project front end is not a react project

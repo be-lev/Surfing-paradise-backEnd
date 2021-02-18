@@ -8,7 +8,7 @@ return vacations;
 }
 
 async function getOneVacationsAsync(id) {
-    const sql = `SELECT vacationId, destination,
+    const sql = `SELECT vacationId, destination, description,
     fromDate, toDate, imageFileName
     FROM vacations WHERE vacationId = ${id}`;
     const vacations = await dal.executeAsync(sql);
@@ -25,7 +25,7 @@ async function addVacationAsync(vacation,image){
         await image.mv("./images/" + newFileName);
     }
 
-    const sql= `INSERT INTO vacations(destination, description, fromDate, toDate, imageFileName) VALUES(
+    const sql= `INSERT INTO vacations VALUES(
         DEFAULT,
         '${vacation.destination}',
         '${vacation.description}',

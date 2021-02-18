@@ -10,7 +10,7 @@ class Vacation {
         this.toDate = existingVacation.toDate;
     }
 
-    // First - define rules regarding product properties - validation schema:
+    // First - define rules regarding vacation properties - validation schema:
     static #postValidationSchema = Joi.object({
         id: Joi.number().optional(),
         destination: Joi.string().required().min(2).max(100),

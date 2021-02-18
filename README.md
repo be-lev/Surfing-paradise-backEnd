@@ -4,8 +4,8 @@
 <br><br>
 
 # :lock: In this secure backend server i used: :lock:
-### Clear server error message from end users.
-### crypto user password in the database.
+### Clear server error message from end users in production, Improper Error Handling
+### crypto (nodeJs) user password in the database using HASH\SALT.
 ### prevent unauthorized entering to different sections of the site.
 ### admin\user login.
 <br>

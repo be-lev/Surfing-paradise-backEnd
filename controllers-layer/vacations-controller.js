@@ -24,7 +24,7 @@ router.get("/", verifyLoggedIn, async (request, response) => {
 router.get("/:id", verifyLoggedIn, async (request, response) => {
     try {
         const id = +request.params.id;
-        const vacation = await vacationLogic.getOneVacationsAsync();
+        const vacation = await vacationLogic.getOneVacationsAsync(id);
         if(!vacation) {
             response.status(404).send(`id ${id} not found.`);
             return;
