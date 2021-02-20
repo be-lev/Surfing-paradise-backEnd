@@ -2,14 +2,14 @@ const dal = require("../data-access-layer/dal")
 const uuid = require("uuid");
 
 async function getAllVacationsAsync(){
-const sql = `SELECT vacationId, destination, description, fromDate, toDate, imageFileName FROM vacations`
+const sql = `SELECT vacationId, destination, description, fromDate, toDate, imageName FROM vacations`
 const vacations = await dal.executeAsync(sql);
 return vacations;
 }
 
 async function getOneVacationsAsync(id) {
     const sql = `SELECT vacationId, destination, description,
-    fromDate, toDate, imageFileName
+    fromDate, toDate, imageName
     FROM vacations WHERE vacationId = ${id}`;
     const vacations = await dal.executeAsync(sql);
     return vacations[0];
@@ -35,7 +35,7 @@ async function addVacationAsync(vacation,image){
     )`;
     const info = await dal.executeAsync(sql);
     vacation.vacationId = info.insertId;
-    product.imageFileName = newFileName;
+    vacation.imageName = newFileName;
     return vacation
 }
 

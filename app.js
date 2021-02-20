@@ -25,10 +25,10 @@ server.use(cookieParser()); // Enable sending an receiving cookies from the fron
 server.use(express.json()); // Create "body" property from the given JSON.
 server.use(sanitize); // Strip Tags:
 server.use(cors()) // Enable CORS
-
+server.use(fileUpload()); // Middleware for getting files sent from the client:
 
 server.use(express.static(path.join(__dirname, "./frontend")));
-server.use(fileUpload());
+
 
 server.use("/api/auth", authController);
 server.use("/api/users", usersController);
