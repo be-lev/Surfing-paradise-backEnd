@@ -27,6 +27,8 @@ server.use(sanitize); // Strip Tags:
 server.use(cors()) // Enable CORS
 server.use(fileUpload()); // Middleware for getting files sent from the client:
 
+
+// TODO: how to redirect this into front end
 server.use(express.static(path.join(__dirname, "./frontend")));
 
 

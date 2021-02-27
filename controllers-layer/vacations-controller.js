@@ -40,8 +40,9 @@ router.post("/", verifyAdmin, async (request, response) => {
     try {
         const vacation = new Vacation(request.body);
         const error = vacation.validatePost();
+        console.log("Validation error: " + error);
         if(error) {
-            response.status(400).send(errorsHelper.getError(err));
+            response.status(400).send(error);
             return;
         }
         const addedVacation = await vacationLogic.addVacationAsync(vacation, request.files ? request.files.image : null);

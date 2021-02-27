@@ -2,14 +2,13 @@ const dal = require("../data-access-layer/dal")
 const uuid = require("uuid");
 
 async function getAllVacationsAsync(){
-const sql = `SELECT vacationId, destination, description, fromDate, toDate, imageName FROM vacations`
+const sql = `SELECT * FROM vacations`
 const vacations = await dal.executeAsync(sql);
 return vacations;
 }
 
 async function getOneVacationsAsync(id) {
-    const sql = `SELECT vacationId, destination, description,
-    fromDate, toDate, imageName
+    const sql = `SELECT *
     FROM vacations WHERE vacationId = ${id}`;
     const vacations = await dal.executeAsync(sql);
     return vacations[0];
@@ -19,20 +18,23 @@ async function getOneVacationsAsync(id) {
 async function addVacationAsync(vacation,image){
 
     let newFileName = null;
+    //save image at server side
     if(image) {
         const extension = image.name.substr(image.name.lastIndexOf("."));
         newFileName = uuid.v4() + extension;
         await image.mv("./images/" + newFileName);
     }
-
     const sql= `INSERT INTO vacations VALUES(
         DEFAULT,
         '${vacation.destination}',
         '${vacation.description}',
         '${vacation.fromDate}',
         '${vacation.toDate}',
+        '${vacation.price}',
         '${newFileName}'
     )`;
+
+ 
     const info = await dal.executeAsync(sql);
     vacation.vacationId = info.insertId;
     vacation.imageName = newFileName;
@@ -44,7 +46,8 @@ async function updateVacationAsync(vacation){
     destination='${vacation.destination}',
     description='${vacation.description}',
     fromDate= '${vacation.fromDate}',
-    toDate='${vacation.toDate}'
+    toDate= '${vacation.toDate}',
+    price= '${vacation.price}',
     WHERE vacationId = ${vacation.vacationId}`;
     const info = await dal.executeAsync(sql);
     return info.affectedRows === 0 ? null : vacation;
