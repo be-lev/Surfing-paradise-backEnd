@@ -21,9 +21,10 @@ router.get("/captcha", (request, response) => {
 });
 
 // Verify user captcha:
-router.post("/register", verifyCaptcha, async (request, response) => {
+router.post("/register", async (request, response) => {
     try {
-        const addedUser = await authLogic.registerAsync(request.body);
+        const newUser = request.body
+        const addedUser = await authLogic.registerAsync(newUser);
         response.status(201).json(addedUser);
     }
     catch (err) {

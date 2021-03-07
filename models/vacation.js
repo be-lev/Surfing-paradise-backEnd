@@ -8,6 +8,8 @@ class Vacation {
         this.description = existingVacation.description;
         this.fromDate = existingVacation.fromDate;
         this.toDate = existingVacation.toDate;
+        this.price = existingVacation.price;
+        this.imageName= existingVacation.imageName
     }
 
     // First - define rules regarding vacation properties - validation schema:
@@ -15,17 +17,19 @@ class Vacation {
         id: Joi.number().optional(),
         destination: Joi.string().required().min(2).max(100),
         description: Joi.string().required().min(2).max(1000),
-        //! pay attention to the format of the date and the validation scheme iam suspecting it at QA level
-        fromDate: Joi.date().greater('now').required(),
-        toDate: Joi.date().required()
+        fromDate: Joi.date().iso().min('now').required(),
+        toDate: Joi.date().iso().greater('now').required(),
+        price: Joi.number().required().min(2).max(10000),
+        imageName: Joi.string().optional()
     });
     static #putValidationSchema = Joi.object({
         id: Joi.number().required().positive().integer(),
         destination: Joi.string().required().min(2).max(100),
         description: Joi.string().required().min(2).max(1000),
-         //! pay attention to the format of the date and the validation scheme iam suspecting it at QA level
-        fromDate: Joi.date().greater('now').required(),
-        toDate: Joi.date().required()
+         fromDate: Joi.date().iso().min('now').required(),
+         toDate: Joi.date().iso().greater('now').required(),
+         price: Joi.number().required().min(2).max(10000),
+        imageName: Joi.string().optional()
     });
  
 

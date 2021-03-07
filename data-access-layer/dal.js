@@ -7,17 +7,15 @@ const connection = mysql.createPool({
     database: config.mysql.database
 });
 
-function executeAsync(sql) {
+function executeAsync(sql, values) {
     return new Promise((resolve, reject) => {
-        connection.query(sql, (err, result)=>{
-            if(err) {
-                reject(err);
-                return;
-            }
+        connection.query(sql, values, (err, result) => {
+            if (err) return reject(err);
             resolve(result);
         });
     });
 }
+
 
 module.exports = {
     executeAsync

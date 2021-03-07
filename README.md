@@ -16,11 +16,11 @@
 | cors     | Handle loading of resources from my website | 
 | express     | Manage and develop the server      |  
 | mysql | Create data base      |  
-| uuid | Create unique Ids for users      |  
+| uuid | Create unique Ids, prevent IDOR - Insecure Direct Object Reference  |  
 | strip-tags | Prevent tags injection into SQL      |  
 | svg-captcha | Prevent login DosS attack       |  
 | express-rate-limit | Prevent server response DosS attack     |  
-| jsonwebtoken | Enable token based secure login       |  
+| jsonwebtoken | Enable token based secure login authorization       |  
 | cookie-parser | Enable sending an receiving cookies from the front      |  
 | joi | Data input validation      |  
 | socket.io | Enable listener for connected Clients to the server        |  
