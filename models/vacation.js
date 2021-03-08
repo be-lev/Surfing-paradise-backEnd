@@ -3,7 +3,7 @@ const Joi = require("joi"); // npm i joi
 class Vacation {
 
     constructor(existingVacation) {
-        this.id = existingVacation.vacationId;
+        this.vacationId = existingVacation.vacationId;
         this.destination = existingVacation.destination;
         this.description = existingVacation.description;
         this.fromDate = existingVacation.fromDate;
@@ -14,7 +14,7 @@ class Vacation {
 
     // First - define rules regarding vacation properties - validation schema:
     static #postValidationSchema = Joi.object({
-        id: Joi.number().optional(),
+        vacationId: Joi.number().optional(),
         destination: Joi.string().required().min(2).max(100),
         description: Joi.string().required().min(2).max(1000),
         fromDate: Joi.date().iso().min('now').required(),
@@ -23,7 +23,7 @@ class Vacation {
         imageName: Joi.string().optional()
     });
     static #putValidationSchema = Joi.object({
-        id: Joi.number().required().positive().integer(),
+        vacationId: Joi.number().required().positive().integer(),
         destination: Joi.string().required().min(2).max(100),
         description: Joi.string().required().min(2).max(1000),
          fromDate: Joi.date().iso().min('now').required(),
