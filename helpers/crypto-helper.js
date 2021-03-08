@@ -2,6 +2,7 @@ const crypto = require("crypto");
 
 const salt = "ShhhhThisIsASecret";
 
+//secret password crypto
 function hash(plainText) {
 
     // Hashing with salt:

@@ -3,6 +3,7 @@ const cryptoHelper = require("../helpers/crypto-helper");
 const uuid = require("uuid");
 const jwtHelper = require("../helpers/jwt-helper");
 
+//Handle secure user register
 async function registerAsync(user) {
   // Hash user password:
   user.password = cryptoHelper.hash(user.password);
@@ -19,7 +20,6 @@ async function registerAsync(user) {
          ?,
          DEFAULT
          )`;
- 
 
   await dal.executeAsync(sql, [
     user.uuid,
@@ -37,6 +37,7 @@ async function registerAsync(user) {
   return user;
 }
 
+//Handle secure user login
 async function loginAsync(credentials) {
   // Hash user password:
   credentials.password = cryptoHelper.hash(credentials.password);
@@ -44,7 +45,6 @@ async function loginAsync(credentials) {
   // Solve SQL injection by sending sql + values:
   const sql =
     "SELECT uuid, firstName, lastName, username, isAdmin FROM users WHERE username = ? AND password = ?";
-
   const users = await dal.executeAsync(sql, [
     credentials.username,
     credentials.password,

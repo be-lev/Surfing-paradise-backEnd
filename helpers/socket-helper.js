@@ -25,15 +25,11 @@ function vacationDeleted(id) {
     socketServer.sockets.emit("msg-from-server-vacation-deleted", id);
 }
 
-function VacationFollowedCount(addedFollowVacation) {
-    socketServer.sockets.emit("msg-from-server-vacation-followed", addedFollowVacation);
-}
 
 module.exports = {
     init,
     vacationAdded,
     vacationUpdated,
     vacationDeleted,
-    VacationFollowedCount
 
 };

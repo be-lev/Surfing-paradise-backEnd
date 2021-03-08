@@ -93,7 +93,7 @@ router.delete("/:id", verifyAdmin, async (request, response) => {
   }
 });
 
-//get image from image folder into URL - all logged in users
+//Get image from image folder into URL - all logged in users
 router.get("/images/:imageName", (request, response) => {
   try {
     const imageName = request.params.imageName;
@@ -105,36 +105,54 @@ router.get("/images/:imageName", (request, response) => {
   }
 });
 
+//  ADD follow to a vacation from user
 router.post("/followVacation", verifyLoggedIn, async (request, response) => {
   try {
     const followedVacationAndUserObject = request.body;
     const addedFollowedVacation = await vacationLogic.AddFollowVacationAsync(
       followedVacationAndUserObject
     );
-
     response.status(201).json(addedFollowedVacation);
-    //Todo: updated socket
-    socketHelper.VacationFollowed(addedFollowedVacation);
   } catch (err) {
     response.status(500).send(errorsHelper.getError(err));
   }
 });
 
+//  Delete follow to a vacation from user
 router.delete(
-  "/followVacation/:id",
+  "/followVacation/:vacationId/:uuid",
   verifyLoggedIn,
   async (request, response) => {
     try {
-      const id = +request.params.id;
-      await vacationLogic.deleteFollowedVacationAsync(id);
+      const paramData = {
+        vacationId: +request.params.vacationId,
+        uuid: request.params.uuid,
+      };
+      const vacationId = paramData.vacationId;
+      const uuid = paramData.uuid;
+      await vacationLogic.deleteFollowedVacationAsync(vacationId, uuid);
       response.sendStatus(204);
-      // Send socket.io added message to front:
-      //Todo: updated socket
-      // socketHelper.vacationFollowedDeleted(id)
     } catch (err) {
       response.status(500).send(errorsHelper.getError(err));
     }
   }
 );
+
+
+//send true or falls by checking if user is following the vacation
+router.get("/isFollowed/:vacationId/:uuid", verifyLoggedIn, async (request, response) => {
+    try {
+        const paramData = {
+            vacationId: +request.params.vacationId,
+            uuid: request.params.uuid,
+          };
+          const vacationId = paramData.vacationId;
+      const uuid = paramData.uuid;
+      const vacations = await vacationLogic.vacationIsFollowedAsync(vacationId, uuid);
+      response.json(vacations);
+    } catch (err) {
+      response.status(500).send(errorsHelper.getError(err));
+    }
+})
 
 module.exports = router;

@@ -26,9 +26,9 @@ class Vacation {
         vacationId: Joi.number().required().positive().integer(),
         destination: Joi.string().required().min(2).max(100),
         description: Joi.string().required().min(2).max(1000),
-         fromDate: Joi.date().iso().min('now').required(),
-         toDate: Joi.date().iso().greater('now').required(),
-         price: Joi.number().required().min(2).max(10000),
+        fromDate: Joi.date().iso().min('now').required(),
+        toDate: Joi.date().iso().greater('now').required(),
+        price: Joi.number().required().min(2).max(10000),
         imageName: Joi.string().optional()
     });
  

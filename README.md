@@ -24,3 +24,8 @@
 | cookie-parser | Enable sending an receiving cookies from the front      |  
 | joi | Data input validation      |  
 | socket.io | Enable listener for connected Clients to the server        |  
+
+
+<!-- TODO -->
+Add captcha
+Update socket on Followed vacations
