@@ -76,11 +76,7 @@ async function deleteFollowedVacationAsync(id) {
   await dal.executeAsync(sql);
 }
 
-async function VacationFollowCounterAsync(vacationId) {
-  const sql = `SELECT count(*) as count FROM selectedvacationbyuser where vacationId = ${vacationId} `;
-  const vacationFollowCounter = await dal.executeAsync(sql);
-  return vacationFollowCounter;
-}
+
 
 module.exports = {
   getAllVacationsAsync,
@@ -90,5 +86,5 @@ module.exports = {
   deleteVacationAsync,
   AddFollowVacationAsync,
   deleteFollowedVacationAsync,
-  VacationFollowCounterAsync,
+
 };

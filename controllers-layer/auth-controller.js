@@ -5,7 +5,7 @@ const errorsHelper = require("../helpers/errors-helper");
 const svgCaptcha = require("svg-captcha");
 const cryptoHelper = require("../helpers/crypto-helper");
 const verifyCaptcha = require("../middleware/verify-captcha");
-
+const verifyLoggedIn = require("../middleware/verify-logged-in");
 // GET /api/auth/captcha
 router.get("/captcha", (request, response) => {
 
@@ -41,6 +41,10 @@ router.post("/login", async (request, response) => {
     catch (err) {
         response.status(500).send(errorsHelper.getError(err));
     }
+});
+
+router.get("/isJwt",verifyLoggedIn, (request, response) => {
+  response.send("Green light")
 });
 
 module.exports = router;

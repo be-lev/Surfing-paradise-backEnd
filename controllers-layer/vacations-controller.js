@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 // Get all vacations - all logged-in users can enter:
-router.get("/", async (request, response) => {
+router.get("/",verifyLoggedIn, async (request, response) => {
     try {
         const vacations = await vacationLogic.getAllVacationsAsync();
         response.json(vacations);
@@ -21,7 +21,7 @@ router.get("/", async (request, response) => {
 });
 
 // Get one vacation - all logged-in users can enter:
-router.get("/:id", async (request, response) => {
+router.get("/:id",verifyLoggedIn, async (request, response) => {
     try {
         const id = +request.params.id;
         const vacation = await vacationLogic.getOneVacationsAsync(id);
@@ -111,7 +111,7 @@ router.get("/images/:imageName", (request, response) => {
 
 
 
-router.post("/followVacation", async (request,response)=>{
+router.post("/followVacation",verifyLoggedIn, async (request,response)=>{
     try{
         const followedVacationAndUserObject = request.body
         const addedFollowedVacation= await vacationLogic.AddFollowVacationAsync(followedVacationAndUserObject)
@@ -124,7 +124,7 @@ router.post("/followVacation", async (request,response)=>{
     }
 })
 
-router.delete("/followVacation/:id", async (request, response) => {
+router.delete("/followVacation/:id",verifyLoggedIn, async (request, response) => {
     try {
         const id = +request.params.id;
         await vacationLogic.deleteFollowedVacationAsync(id);
@@ -137,25 +137,6 @@ router.delete("/followVacation/:id", async (request, response) => {
         response.status(500).send(errorsHelper.getError(err));
     }
 });
-
-router.get("/vacationFollowersCount/:id", async (request,response)=>{
-    try {
-        const id = +request.params.id;
-        
-        const vacationFollowersCount = await vacationLogic.VacationFollowCounterAsync(id);
-        // socketHelper.VacationFollowedCount(vacationFollowersCount);
-        if(!vacationFollowersCount) {
-            response.status(404).send(`id ${id} not found.`);
-            return;
-        }response.json(vacationFollowersCount);
-    }
-    catch (err) {
-        response.status(500).send(errorsHelper.getError(err));
-    }
-
-})
-
-
 
 
 
