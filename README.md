@@ -12,7 +12,6 @@
 
 ## how to run the project 
 -- clone the repository.
-# Backend
 ## To run DB on mac with mySQL
 ### install mysql using the following commands: 
 1. brew install mysql
