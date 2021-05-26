@@ -10,6 +10,29 @@
 ### admin\user login.
 <br>
 
+## how to run the project 
+-- clone the repository.
+# Backend
+## To run DB on mac with mySQL
+### install mysql using the following commands: 
+1. brew install mysql
+2. brew tap homebrew/services
+3. brew services start mysql
+4. mysqladmin -u root password '<your password>’'
+5. In ./backend/config-dev.json change to your password
+6. Install Mysql workbench https://dev.mysql.com/downloads/workbench/
+### In workbench:
+1. Create a new connection on workbench
+2. Inside the new connection open file user_managment.sql
+3. Run the sql command ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password  BY '< your password>'
+4. Run the file script (using the lightning icon)
+
+### assuming you have SQL server management software, node  installed.
+1. cd to backend folder.
+2. run `npm install`
+3. run `node app` to run the server
+
+
 
 | NPM package name        | Usage           | 
 | ------------- |:-------------:| 
